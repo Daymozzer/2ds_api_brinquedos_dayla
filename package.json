@@ -1,0 +1,28 @@
+{
+  "name": "pw2_api_brinquedos_day",
+  "version": "1.0.0",
+  "description": "API LOJA DE BRINQUEDOS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "PW2",
+    "ETEC",
+    "BARUERI",
+    "NODEJS"
+  ],
+  "author": "DAYLA ALVES MOZZER",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.0"
+  }
+}
