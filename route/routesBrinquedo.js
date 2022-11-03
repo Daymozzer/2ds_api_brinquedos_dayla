@@ -2,7 +2,7 @@
 const express = require('express');
 
 //Importa a tabela de Carros
-const modelCarro = require('../model/modelBrinquedos');
+const modelBrinquedos = require('../model/modelBrinquedos');
 
 //gerenciador de rotas para o express
 const router = express.Router();
