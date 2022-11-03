@@ -1,6 +1,6 @@
 const express = require('express');
 
-const routes = require('./route/routesBrinquedos');
+const routes = require('./route/routesBrinquedo');
 
 const app = express();
 

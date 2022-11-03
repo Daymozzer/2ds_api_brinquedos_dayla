@@ -21,6 +21,6 @@ const modelBrinquedo = connection.define(
     }
 );
 
-modelCategoria.sync({force:true});
+modelBrinquedo.sync({force:true});
 
 module.exports = modelBrinquedo;
