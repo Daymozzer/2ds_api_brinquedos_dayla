@@ -1,7 +1,10 @@
+//importa o pacote sequelize
 const Sequelize = require('sequelize');
 
+//conexão com o BD
 const connection = require('../database/database');
 
+//criação das tabelas
 const modelBrinquedo = connection.define(
     'tbl_brinquedo',
     {
@@ -21,6 +24,6 @@ const modelBrinquedo = connection.define(
     }
 );
 
-modelBrinquedo.sync({force:true});
+//modelBrinquedo.sync({force:true});
 
 module.exports = modelBrinquedo;

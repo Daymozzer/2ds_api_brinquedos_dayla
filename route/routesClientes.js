@@ -1,32 +1,32 @@
-//Importa o pacote express
+// importa o pacote do express
 const express = require('express');
 
-//Importa a tabela de Brinquedos 
-const modelBrinquedo = require('../model/modelBrinquedos');
+// importa a tabela de cliente
+const modelClientes = require('../model/modelClientes');
 
-//gerenciador de rotas para o express
+//gerenciador de rotas para express
 const router = express.Router();
 
-//rotas de cadastro de dados do brinquedo
+//rotas de crud de dados do cliente
 router.post('/cadastrarDados', (req, res)=>{
     console.log(req.body);
     
-    let {nome_brinquedo} = req.body;
-    modelBrinquedo.create(
+    let {nome_cliente} = req.body;
+    modelClientes.create(
         //dados de inserção
-        {nome_brinquedo}
+        {nome_cliente}
     ).then(
         ()=>{
             return res.status(201).json({
                 erroStatus:false,
-                mensagemStatus:"BRINQUEDO INSERIDO COM SUCESSO."
+                mensagemStatus:"CLIENTE INSERIDO COM SUCESSO."
             })
         }
     ).catch(
         (error)=>{
             return res.status(400).json({
                 erroStatus:true,
-                mensagemStatus:"ERRO AO CADASTRAR O BRINQUEDO.",
+                mensagemStatus:"ERRO AO CADASTRAR O CLIENTE.",
                 errorObject:error
             });
         }
@@ -35,16 +35,16 @@ router.post('/cadastrarDados', (req, res)=>{
 
 });
 
-//rota de listagem simples
+//rota de listagem simples do cliente
 router.get('/listarDados', (res)=>{
 
-    modelBrinquedo.findAll()
+    modelClientes.findAll()
         .then(
             (response)=>{
                 //console.log(response);
                 return res.status(200).json({
                     erroStatus:false,
-                    mensagemStatus:"BRINQUEDOS LISTADOS COM SUCESSO.",
+                    mensagemStatus:"CLIENTES LISTADOS COM SUCESSO.",
                     data:response
                 })
             }
@@ -52,7 +52,7 @@ router.get('/listarDados', (res)=>{
             (error)=>{
                 return res.status(400).json({
                     erroStatus:true,
-                    mensagemStatus:"ERRO AO LISTAR OS BRINQUEDOS.",
+                    mensagemStatus:"ERRO AO LISTAR OS CLIENTES.",
                     errorObject:error
                 });
             }
@@ -62,19 +62,19 @@ router.get('/listarDados', (res)=>{
 
 });
 
-//listagem por cod_brinquedo
-router.get('/listarDadosPK/:cod_brinquedo', (req, res)=>{
+//listagem por cod_cliente
+router.get('/listarDadosPK/:cod_cliente', (req, res)=>{
 
     //declarar e receber dados
-    let {cod_brinquedo} = req.params;
+    let {cod_cliente} = req.params;
 
     //ação do sequelize
-    modelBrinquedo.findByPk(cod_brinquedo)
+    modelClientes.findByPk(cod_cliente)
     .then(
         (response)=>{
             return res.status(200).json({
                 erroStatus:false,
-                mensagemStatus:"BRINQUEDO RECUPERADO COM SUCESSO.",
+                mensagemStatus:"CLIENTE RECUPERADO COM SUCESSO.",
                 data:response
             })
         }
@@ -83,7 +83,7 @@ router.get('/listarDadosPK/:cod_brinquedo', (req, res)=>{
         (error)=>{
             return res.status(400).json({
                 erroStatus:true,
-                mensagemStatus:"ERRO AO RECUPERAR O BRINQUEDO.",
+                mensagemStatus:"ERRO AO RECUPERAR O CLIENTE.",
                 errorObject:error
             });
         }
@@ -91,17 +91,17 @@ router.get('/listarDadosPK/:cod_brinquedo', (req, res)=>{
 
 });
 
-//rota de listagem por nome_brinquedo
-router.get('/listarDadosNOME/:nome_brinquedo', (req, res)=>{
+//rota de listagem por nome_cliente
+router.get('/listarDadosNOME/:nome_cliente', (req, res)=>{
 
-    let {nome_brinquedo} = req.params;
+    let {nome_cliente} = req.params;
 
-    modelBrinquedo.findOne({attributes:['cod_brinquedo', 'nome_brinquedo'],where:{nome_brinquedo}})
+    modelClientes.findOne({attributes:['cod_cliente', 'nome_cliente'],where:{nome_cliente}})
     .then(
         (response)=>{
             return res.status(200).json({
                 erroStatus:false,
-                mensagemStatus:"BRINQUEDO RECUPERADO COM SUCESSO.",
+                mensagemStatus:"CLIENTE RECUPERADO COM SUCESSO.",
                 data:response
             })
         }
@@ -110,7 +110,7 @@ router.get('/listarDadosNOME/:nome_brinquedo', (req, res)=>{
         (error)=>{
             return res.status(400).json({
                 erroStatus:true,
-                mensagemStatus:"ERRO AO RECUPERAR O BRINQUEDO.",
+                mensagemStatus:"ERRO AO RECUPERAR O CLIENTE.",
                 errorObject:error
             });
         }
@@ -118,26 +118,26 @@ router.get('/listarDadosNOME/:nome_brinquedo', (req, res)=>{
 
 });
 
-//rotas de alteração do brinquedo
+//rotas de alteração do cliente
 router.put('/alterarDados', (req, res)=>{
 
-    const {cod_brinquedo, nome_brinquedo} = req.body;
+    const {cod_cliente, nome_cliente} = req.body;
 
-    modelBrinquedo.update(
-        {nome_brinquedo},
-        {where:{cod_brinquedo}}
+    modelClientes.update(
+        {nome_cliente},
+        {where:{cod_cliente}}
     ).then(
         ()=>{
             return res.status(200).json({
                 erroStatus:false,
-                mensagemStatus:"BRINQUEDO ALTERADO COM SUCESSO."
+                mensagemStatus:"CLIENTE ALTERADO COM SUCESSO."
             })
         }
     ).catch(
         (error)=>{
             return res.status(400).json({
                 erroStatus:true,
-                mensagemStatus:"ERRO AO ALTERAR O BRINQUEDO.",
+                mensagemStatus:"ERRO AO ALTERAR O CLIENTE.",
                 errorObject:error
             });
         }
@@ -147,25 +147,25 @@ router.put('/alterarDados', (req, res)=>{
 
 });
 
-//rota de exclusão do brinquedo
-router.delete('/excluirDados/:cod_brinquedo', (req, res)=>{
+//rota de exclusão do cliente
+router.delete('/excluirDados/:cod_cliente', (req, res)=>{
     console.log(req.params);
     let {cod_brinquedo} = req.params
 
-    modelBrinquedo.destroy(
+    modelClientes.destroy(
         {where:{cod_brinquedo}}
     ).then(
         ()=>{
             return res.status(200).json({
                 erroStatus:false,
-                mensagemStatus:"BRINQUEDO EXCLUIDO COM SUCESSO."
+                mensagemStatus:"CLIENTE EXCLUIDO COM SUCESSO."
             })
         }
     ).catch(
         (error)=>{
             return res.status(400).json({
                 erroStatus:true,
-                mensagemStatus:"ERRO AO EXCLUIR O BRINQUEDO.",
+                mensagemStatus:"ERRO AO EXCLUIR O CLIENTE.",
                 errorObject:error
             });
         }
