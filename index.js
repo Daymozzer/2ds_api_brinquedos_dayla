@@ -1,12 +1,15 @@
 //pacote express
 const express = require('express');
+
 const routesBrinquedo = require('./route/routesBrinquedo');
 const routesClientes = require ('./route/routesClientes')
 
 
 //torna o express executavel dentro do script
-app.use(express.json());
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
 
 //execução
 app.use('/', routesBrinquedo);

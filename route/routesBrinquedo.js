@@ -11,10 +11,10 @@ const router = express.Router();
 router.post('/cadastrarDados', (req, res)=>{
     console.log(req.body);
     
-    let {nome_brinquedo} = req.body;
+    let {nome_brinquedo, modelo_brinquedo} = req.body;
     modelBrinquedo.create(
         //dados de inserção
-        {nome_brinquedo}
+        {nome_brinquedo, modelo_brinquedo}
     ).then(
         ()=>{
             return res.status(201).json({
@@ -36,7 +36,7 @@ router.post('/cadastrarDados', (req, res)=>{
 });
 
 //rota de listagem simples
-router.get('/listarDados', (res)=>{
+router.get('/listarDados', (req, res)=>{
 
     modelBrinquedo.findAll()
         .then(

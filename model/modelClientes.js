@@ -11,7 +11,7 @@ const modelClientes = connection.define(
  
 cpf_cliente:{
 type: Sequelize.INTEGER,
-autoIncrement: true
+
  },
  nome_cliente:{
 type: Sequelize.STRING(60),
